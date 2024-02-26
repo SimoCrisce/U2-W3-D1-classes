@@ -42,27 +42,32 @@ class Animal {
   }
 }
 
-function animalText() {
-  const p = document.createElement("p");
-  p.appendChild(petName.value);
+const animals = [];
 
-  const animals = [];
-
-  form.onsubmit = (e) => {
-    e.preventDefault();
-    new Animal(petName.value, ownerName.value, species.value, breed.value);
-  };
-
-  animals.push(Animal);
+form.onsubmit = function (e) {
+  e.preventDefault();
+  const animal = new Animal(petName.value, ownerName.value, species.value, breed.value);
 
   console.log(
     "Nome animale:",
-    petName.value,
+    animal.petName,
     "Nome proprietario:",
-    ownerName.value,
+    animal.ownerName,
     "Specie:",
-    species.value,
+    animal.species,
     "Razza:",
-    breed.value
+    animal.breed
   );
-}
+  const ul = document.querySelector("ul");
+  const list = document.createElement("li");
+  list.innerText =
+    "Nome animale " +
+    animal.petName +
+    " Nome padrone: " +
+    animal.ownerName +
+    " Specie: " +
+    animal.species +
+    " Razza: " +
+    animal.breed;
+  ul.appendChild(list);
+};
